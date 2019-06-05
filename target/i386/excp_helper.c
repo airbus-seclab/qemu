@@ -23,6 +23,7 @@
 #include "qemu/log.h"
 #include "sysemu/sysemu.h"
 #include "exec/helper-proto.h"
+#include "qemu/afl.h"
 
 void helper_raise_interrupt(CPUX86State *env, int intno, int next_eip_addend)
 {
@@ -91,6 +92,8 @@ static void QEMU_NORETURN raise_interrupt2(CPUX86State *env, int intno,
                                            uintptr_t retaddr)
 {
     CPUState *cs = CPU(x86_env_get_cpu(env));
+
+    afl_check_intercept(env, intno, is_int, error_code, retaddr);
 
     if (!is_int) {
         cpu_svm_check_intercept_param(env, SVM_EXIT_EXCP_BASE + intno,

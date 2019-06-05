@@ -3620,6 +3620,14 @@ STEXI
 Set the filename for the BIOS.
 ETEXI
 
+DEF("gustave", HAS_ARG, QEMU_OPTION_gustave, \
+    "-gustave file   GUSTAVE fuzzer JSON configuration filename\n", QEMU_ARCH_ALL)
+STEXI
+@item -gustave @var{file}
+@findex -gustave
+GUSTAVE fuzzer JSON configuration filename.
+ETEXI
+
 DEF("enable-kvm", 0, QEMU_OPTION_enable_kvm, \
     "-enable-kvm     enable KVM full virtualization support\n", QEMU_ARCH_ALL)
 STEXI

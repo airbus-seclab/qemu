@@ -13,3 +13,5 @@ obj-$(CONFIG_VMMOUSE) += vmmouse.o
 
 obj-y += kvmvapic.o
 obj-y += acpi-build.o
+
+obj-y += fuzz/

@@ -1795,6 +1795,9 @@ static int gdb_handle_packet(GDBState *s, const char *line_buf)
 
 void gdb_set_stop_cpu(CPUState *cpu)
 {
+    if (!gdbserver_state)
+         return;
+
     GDBProcess *p = gdb_get_cpu_process(gdbserver_state, cpu);
 
     if (!p->attached) {

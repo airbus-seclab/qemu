@@ -1,0 +1,2 @@
+# AFL fuzzing board common code
+obj-y += board.o state.o child.o snapshot.o inject.o cpu.o coverage.o mem.o conf.o

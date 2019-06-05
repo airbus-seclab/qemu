@@ -1,0 +1,2 @@
+# AFL x86 specific
+obj-y += afl.o pok.o

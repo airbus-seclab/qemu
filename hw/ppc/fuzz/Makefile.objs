@@ -1,0 +1,2 @@
+# AFL PowerPC specific
+obj-y += afl.o pok.o

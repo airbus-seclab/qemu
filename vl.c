@@ -290,6 +290,16 @@ static QemuOptsList qemu_machine_opts = {
     },
 };
 
+static QemuOptsList qemu_gustave_opts = {
+    .name = "gustave",
+    .implied_opt_name = "gustave",
+    .head = QTAILQ_HEAD_INITIALIZER(qemu_gustave_opts.head),
+    .merge_lists = true,
+    .desc = {
+        { /* end of list */ }
+    },
+};
+
 static QemuOptsList qemu_accel_opts = {
     .name = "accel",
     .implied_opt_name = "accel",
@@ -3038,6 +3048,7 @@ int main(int argc, char **argv, char **envp)
     qemu_add_opts(&qemu_trace_opts);
     qemu_add_opts(&qemu_option_rom_opts);
     qemu_add_opts(&qemu_machine_opts);
+    qemu_add_opts(&qemu_gustave_opts);
     qemu_add_opts(&qemu_accel_opts);
     qemu_add_opts(&qemu_mem_opts);
     qemu_add_opts(&qemu_smp_opts);
@@ -3636,6 +3647,13 @@ int main(int argc, char **argv, char **envp)
                 opts = qemu_opts_create(qemu_find_opts("machine"), NULL,
                                         false, &error_abort);
                 qemu_opt_set(opts, "accel", optarg, &error_abort);
+                break;
+            case QEMU_OPTION_gustave:
+                opts = qemu_opts_parse_noisily(qemu_find_opts("gustave"),
+                                               optarg, true);
+                if (!opts) {
+                    exit(1);
+                }
                 break;
             case QEMU_OPTION_usb:
                 olist = qemu_find_opts("machine");

@@ -65,8 +65,10 @@ static const int ide_iobase[MAX_IDE_BUS] = { 0x1f0, 0x170 };
 static const int ide_iobase2[MAX_IDE_BUS] = { 0x3f6, 0x376 };
 static const int ide_irq[MAX_IDE_BUS] = { 14, 15 };
 
+void pc_init1(MachineState*, const char*, const char*);
+
 /* PC hardware initialisation */
-static void pc_init1(MachineState *machine,
+void pc_init1(MachineState *machine,
                      const char *host_type, const char *pci_type)
 {
     PCMachineState *pcms = PC_MACHINE(machine);
